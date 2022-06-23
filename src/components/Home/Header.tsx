@@ -9,7 +9,7 @@ const Header: FC = () => {
 
     return (
         <>
-        <div className="flex text-xs p-3 border-b-2 border-b-black-500">
+        <div className="flex text-xs p-3 border-b-2 border-b-black-500 sticky top-0 bg-white">
             <div className="flex w-16">
                 
             </div>

@@ -46,17 +46,31 @@ const Explore: FC = () => {
                     return (
                         <Link key={index} href={`post/${publication.id}`}>
                             <div className="border-b-2 border-b-black-500 m-3">
-                                <div className="text-xs font-solid">
-                                    <Image src={publication?.profile?.picture?.original?.url} alt="profile-picture" width={30} height={30}
-                                        className="rounded-full" /> {publication?.profile?.handle}
-                                </div>
-                                {/* <div className="text-sm"
-                                    dangerouslySetInnerHTML={{ __html: (publication.metadata.content).split(0, 30) }} /> */}
+                                <div className="text-xs font-solid flex">
                                     <div>
-                                        <h1 className="text-2xl font-bold">
-                                            How to write a Solidity Smart Contract and deploy with remix IDE
-                                        </h1>
-                                        <p className="text-sm">This is a very short and friendly article</p>
+                                        <Image src={publication?.profile?.picture?.original?.url} alt="profile-picture" width={30} height={30}
+                                            className="rounded-full" />
+                                    </div>
+                                    <div className="p-2.5">
+                                        {publication?.profile?.handle}
+                                    </div>
+                                </div>
+                                    <div className="overflow-y-clip">
+                                        <div className="flex">
+                                            <div className="w-3/4">
+                                                <h1 className="text-2xl font-bold py-2">
+                                                    How to write a Solidity Smart Contract and deploy with remix IDE
+                                                </h1>
+                                                <div className="text-ellipsis overflow-y-hidden max-h-24"
+                                                    dangerouslySetInnerHTML={{ __html: (publication.metadata.content).replace(/<img[^>]* src=\"([^\"]*)\"[^>]*>/g, "") }} />
+                                            </div>
+                                            <div className="float-right w-64 m-x-5"
+                                                dangerouslySetInnerHTML={{ __html: (publication.metadata.content).match(/<img[^>]* src=\"([^\"]*)\"[^>]*>/g) ?
+                                                (publication.metadata.content).match(/<img[^>]* src=\"([^\"]*)\"[^>]*>/g)[0] 
+                                                : "<img src='/lensblogger.png' />"}} />
+                                        </div>
+                                        
+                                        {/* <p className="text-sm">This is a very short and friendly article</p> */}
                                         <p className="text-xs my-3 text-gray-600">{getDate(publication)}</p>
                                     </div>
                                     <div>
